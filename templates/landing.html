@@ -20,7 +20,7 @@
     </p>
     <div class="landing-actions">
         <a href="{{ url_for('register') }}" class="landing-btn">Create free account</a>
-        <a href="#features" class="landing-btn">See how it works</a>
+        <button type="button" class="landing-btn" id="how-it-works-btn">See how it works</button>
     </div>
 
     <div class="landing-dash">
@@ -97,4 +97,47 @@
     </div>
 </section>
 
+<div class="video-modal" id="video-modal" hidden>
+    <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-label="How Spendly works">
+        <button type="button" class="video-modal-close" aria-label="Close video">&times;</button>
+        <div class="video-modal-frame">
+            <iframe id="video-modal-iframe" data-src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="How Spendly works" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        var trigger = document.getElementById('how-it-works-btn');
+        var modal = document.getElementById('video-modal');
+        var iframe = document.getElementById('video-modal-iframe');
+        var closeBtn = modal.querySelector('.video-modal-close');
+
+        function openModal() {
+            iframe.src = iframe.dataset.src;
+            modal.hidden = false;
+            closeBtn.focus();
+        }
+
+        function closeModal() {
+            modal.hidden = true;
+            // Removing the src unloads the player, so the video stops
+            iframe.removeAttribute('src');
+        }
+
+        trigger.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !modal.hidden) closeModal();
+        });
+    })();
+</script>
 {% endblock %}

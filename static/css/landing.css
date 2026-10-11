@@ -65,10 +65,13 @@
     display: inline-block;
     background: #111;
     color: #fff;
+    font-family: inherit;
     font-size: 1.2rem;
     font-weight: 500;
     padding: 1.1rem 2.25rem;
+    border: none;
     border-radius: 12px;
+    cursor: pointer;
     transition: background 0.2s;
 }
 
@@ -177,6 +180,60 @@
 .landing-bar-food { background: #e8a545; }
 .landing-bar-travel { background: #4a86d8; }
 .landing-bar-bills { background: #8270d6; }
+
+/* ------------------------------------------------------------------ */
+/* Video modal                                                         */
+/* ------------------------------------------------------------------ */
+
+.video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(15, 15, 15, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.video-modal[hidden] {
+    display: none;
+}
+
+.video-modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.video-modal-frame {
+    position: relative;
+    padding-top: 56.25%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-modal-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 @media (max-width: 700px) {
     .landing-hero { padding: 3rem 1rem 3.5rem; }
